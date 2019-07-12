@@ -63,8 +63,25 @@ function moveAliens() {
             clearInterval(game);
             clearInterval(spammer);
 
-            // let you know about the crash
-            message.innerHTML = "Game Over";
+            //Explosion code
+            var boom = new Image();
+            boom.src = "boom.gif";
+            boom.id = "boom";
+
+            //position the boom on the screen
+            boom.style.height = "100px";
+            boom.style.width = "100px";
+            boom.style.position = "absolute";
+            boom.style.top = parseInt(window.innerHeight) - 180 + "px";
+            boom.style.left = parseInt(person.style.left) - 0 + "px";
+            body.appendChild(boom);
+
+            setTimeout(function () {
+                body.removeChild(boom);
+            }, 800);
+
+            //game over message
+            message.innerHTML = "Game Over <br> <button href='#' type='button' onClick=\"window.location.reload();\">Restart</button>";
         }
     }
 }
